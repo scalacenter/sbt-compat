@@ -42,3 +42,16 @@ import com.typesafe.tools.mima.core._, ProblemFilters._
 mimaBinaryIssueFilters ++= Seq()
 
 cancelable in Global := true
+
+// Set version explicitly because sbt-dynver would set a version like 1.2.6+1
+version in ThisBuild := "1.2.6"
+
+publishTo in ThisBuild := sonatypePublishTo.value
+
+credentials in ThisBuild += Credentials("Sonatype Nexus Repository Manager",
+  "oss.sonatype.org",
+  sys.env("SONATYPE_USERNAME"),
+  sys.env("SONATYPE_PASSWORD")
+)
+
+publishMavenStyle in ThisBuild := true
